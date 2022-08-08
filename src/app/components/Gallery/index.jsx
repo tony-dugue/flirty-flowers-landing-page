@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import "./style.scss";
 
@@ -33,10 +33,50 @@ const images = [
   },
 ];
 
+const GalleryItem = ({ src, category, subtitle, title, updateActiveImage, index }) => {
+  return (
+    <div className="gallery-item-wrapper">
+      <div />
+      <div classname="gallery-item">
+
+        <div className="gallery-item-info">
+          <h1 className="gallery-info-title">{title}</h1>
+          <h2 className="gallery-info-subtitle">{subtitle}</h2>
+          <p className="gallery-info-category">{category}</p>
+        </div>
+
+        <div className="gallery-item-image" style={{ backgroundImage: `url(${src})`}}></div>
+
+      </div>
+      <div />
+    </div>
+  )
+}
+
 const Gallery = () => {
+
+  const [activeImage, setActiveImage] =  useState(1);
+
   return (
     <section className="section-wrapper gallery-wrap">
-      Gallery
+      <div className="gallery">
+
+        <div className='gallery-counter'>
+          <span>{activeImage}</span>
+          <span className="divider" />
+          <span>{images.length}</span>
+        </div>
+
+        {images.map( (image, index) => (
+          <GalleryItem
+            key={image.src}
+            index={index}
+            {...image}
+            updateActiveImage={ index => setActiveImage(index + 1)}
+          />
+        ))}
+
+      </div>
     </section>
   );
 }

@@ -1,10 +1,12 @@
 import React from 'react'
 import './style.scss';
 
-export default function SectionHeader({title}) {
+const SectionHeader = ({title}) => {
   return (
     <h6 className='section-header'>
       {title}
     </h6>
   )
 }
+
+export default SectionHeader
