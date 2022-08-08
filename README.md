@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Astronaut Studio (with React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Présentation
+***
 
-## Available Scripts
+Test de landing page en React / Styled-components avec animations pour une landing page fictive.
+Ce site web est crée à l'aide de Locomotive-scroll pour avoir un scroll fluide, et GSAP / framer-motion pour certaines animations et effets personnalisés.
 
-In the project directory, you can run:
+Ce projet a été initialisé avec [Create React App](https://github.com/facebook/create-react-app).
 
-### `npm start`
+## 📷 Screenshots
+***
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 Installation
+***
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- récupération du projet sur Github par HTTPS :
 
-### `npm test`
+```shell script
+$ https://github.com/tony-dugue/flirty-flowers-landing-page.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- installer les packages :
+```shell script
+$ yarn install
+```
+ou `npm install`
 
-### `npm run build`
+## Démarrer l'application
+***
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Pour démarrer le serveur de développement (à la racine du projet) :
+```bash
+npm run start
+# ou
+yarn start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Pour lancer le projet dans le navigateur (en mode développeur) :
+[http://localhost:3000](http://localhost:3000)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+(la page se rechargera lors des modifications.
+Les lint Errors seront visible dans le terminal.)
 
-### `npm run eject`
+## Mise en production
+***
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Préparer le projet pour le déploiement :
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm run build
+# ou
+yarn build
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Ressources utilisées dans le projet
+***
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Fonts :
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Librairies utilisées dans ce projet :
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[styled-components](https://styled-components.com/docs/advanced) <br />
+[GSAP](https://greensock.com/gsap/) <br />
+[Framer-motion](https://www.framer.com/motion/) <br />
+[React-Locomotive-Scroll](https://www.npmjs.com/package/react-locomotive-scroll) <br />
+[Locomotive-Scroll](https://www.npmjs.com/package/locomotive-scroll) <br />
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Images & Vidéos :
