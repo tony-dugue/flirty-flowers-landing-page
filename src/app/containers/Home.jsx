@@ -6,12 +6,15 @@ import Header from "../components/Header";
 import Featured from "../components/Featured";
 import About from "../components/About";
 import Gallery from "../components/Gallery";
+import CustomCursor from "../CustomCursor";
 
 import "../styles/home.scss";
 
 const Home = () => {
   return (
     <>
+      <CustomCursor />
+
       <div className="main-container" id="main-container">
         <Navbar />
         <Header />
