@@ -1,8 +1,9 @@
+import Home from "./app/containers/Home";
 
 const App = () => {
   return (
     <div className="App">
-      Hello World
+      <Home />
     </div>
   );
 }
