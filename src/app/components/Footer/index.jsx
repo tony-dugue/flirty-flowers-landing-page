@@ -5,7 +5,7 @@ import SectionHeader from "../SectionHeader";
 
 const Footer = () => {
   return (
-    <section className="footer">
+    <section className="footer" data-scroll-section>
 
       <SectionHeader title="Made in" />
 

@@ -37,7 +37,7 @@ const GalleryItem = ({ src, category, subtitle, title, updateActiveImage, index 
   return (
     <div className="gallery-item-wrapper">
       <div />
-      <div classname="gallery-item">
+      <div className="gallery-item">
 
         <div className="gallery-item-info">
           <h1 className="gallery-info-title">{title}</h1>
@@ -58,7 +58,7 @@ const Gallery = () => {
   const [activeImage, setActiveImage] =  useState(1);
 
   return (
-    <section className="section-wrapper gallery-wrap">
+    <section className="section-wrapper gallery-wrap" data-scroll-section>
       <div className="gallery">
 
         <div className='gallery-counter'>

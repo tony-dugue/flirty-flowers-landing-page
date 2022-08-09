@@ -5,7 +5,7 @@ import SectionHeader from "../SectionHeader";
 
 const About = () => {
   return (
-    <section className="about-section">
+    <section className="about-section" data-scroll-section>
 
       <SectionHeader title="about" />
 
