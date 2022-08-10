@@ -1,6 +1,11 @@
-import React, {useState} from "react";
-
+import React, {useEffect, useRef, useState} from "react";
+import cn from "classnames";
 import "./style.scss";
+
+import { gsap } from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+import useOnScreen from "../../hooks/useOnScreen";
 
 const images = [
   {
@@ -34,9 +39,20 @@ const images = [
 ];
 
 const GalleryItem = ({ src, category, subtitle, title, updateActiveImage, index }) => {
+
+  const ref = useRef(null);
+
+  const onScreen = useOnScreen(ref, 0.5);
+
+  useEffect(() => {
+    if (onScreen) {
+      updateActiveImage(index);
+    }
+  }, [onScreen, index, updateActiveImage]);
+
   return (
-    <div className="gallery-item-wrapper">
-      <div />
+    <div className={cn("gallery-item-wrapper", { "is-reveal": onScreen })} ref={ref}>
+      <div></div>
       <div className="gallery-item">
 
         <div className="gallery-item-info">
@@ -48,7 +64,7 @@ const GalleryItem = ({ src, category, subtitle, title, updateActiveImage, index 
         <div className="gallery-item-image" style={{ backgroundImage: `url(${src})`}}></div>
 
       </div>
-      <div />
+      <div></div>
     </div>
   )
 }
@@ -57,7 +73,40 @@ const Gallery = () => {
 
   const [activeImage, setActiveImage] =  useState(1);
 
+  const ref = useRef(null);
+
+  useEffect(() => {
+
+    // This does not seem to work without a settimeout
+    setTimeout(() => {
+      let sections = gsap.utils.toArray(".gallery-item-wrapper");
+
+      gsap.to(sections, {
+        xPercent: -100 * (sections.length - 1),
+        ease: "none",
+        scrollTrigger: {
+          start: "top top",
+          trigger: ref.current,
+          scroller: "#main-container",
+          pin: true,
+          scrub: true,
+          snap: 1 / (sections.length - 1),
+          end: () => `+=${ref.current.offsetWidth}`,
+          //markers: true,
+        },
+      });
+
+      ScrollTrigger.refresh();
+    })
+
+  }, [])
+
+  const handleUpdateActiveImage = (index) => {
+    setActiveImage(index + 1);
+  };
+
   return (
+    <div ref={ref}>
     <section className="section-wrapper gallery-wrap" data-scroll-section>
       <div className="gallery">
 
@@ -72,12 +121,13 @@ const Gallery = () => {
             key={image.src}
             index={index}
             {...image}
-            updateActiveImage={ index => setActiveImage(index + 1)}
+            updateActiveImage={handleUpdateActiveImage}
           />
         ))}
 
       </div>
     </section>
+    </div>
   );
 }
 
