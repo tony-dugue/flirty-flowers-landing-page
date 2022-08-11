@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import cn from "classnames";
 import "./style.scss";
 
@@ -9,37 +9,39 @@ import useOnScreen from "../../hooks/useOnScreen";
 
 const images = [
   {
-    src:
-      "https://images.unsplash.com/photo-1566204773863-cf63e6d4ab88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1345&q=100",
+    src: "https://images.unsplash.com/photo-1566204773863-cf63e6d4ab88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1345&q=100",
     title: "Dracaena Trifasciata",
     subtitle: "Live the Beauty",
     category: "Shooting / Adv.Campaing",
   },
   {
-    src:
-      "https://images.unsplash.com/photo-1558603668-6570496b66f8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1300&q=100",
+    src: "https://images.unsplash.com/photo-1558603668-6570496b66f8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1300&q=100",
     title: "Cereus Penuvianus",
     subtitle: "Live the Beauty",
     category: "Shooting / Adv.Campaing",
   },
   {
-    src:
-      "https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=100",
+    src: "https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=100",
     title: "Calliope",
     subtitle: "Live the Beauty",
     category: "Shooting / Adv.Campaing",
   },
   {
-    src:
-      "https://images.unsplash.com/photo-1611145367651-6303b46e4040?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2006&q=100",
+    src: "https://images.unsplash.com/photo-1611145367651-6303b46e4040?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2006&q=100",
     title: "Golden Pothos",
     subtitle: "Living Room",
     category: "Shooting / Adv.Campaing",
   },
 ];
 
-const GalleryItem = ({ src, category, subtitle, title, updateActiveImage, index }) => {
-
+const GalleryItem = ({
+  src,
+  category,
+  subtitle,
+  title,
+  updateActiveImage,
+  index,
+}) => {
   const ref = useRef(null);
 
   const onScreen = useOnScreen(ref, 0.5);
@@ -51,32 +53,34 @@ const GalleryItem = ({ src, category, subtitle, title, updateActiveImage, index 
   }, [onScreen, index, updateActiveImage]);
 
   return (
-    <div className={cn("gallery-item-wrapper", { "is-reveal": onScreen })} ref={ref}>
+    <div
+      className={cn("gallery-item-wrapper", { "is-reveal": onScreen })}
+      ref={ref}
+    >
       <div></div>
       <div className="gallery-item">
-
         <div className="gallery-item-info">
           <h1 className="gallery-info-title">{title}</h1>
           <h2 className="gallery-info-subtitle">{subtitle}</h2>
           <p className="gallery-info-category">{category}</p>
         </div>
 
-        <div className="gallery-item-image" style={{ backgroundImage: `url(${src})`}}></div>
-
+        <div
+          className="gallery-item-image"
+          style={{ backgroundImage: `url(${src})` }}
+        ></div>
       </div>
       <div></div>
     </div>
-  )
-}
+  );
+};
 
 const Gallery = () => {
-
-  const [activeImage, setActiveImage] =  useState(1);
+  const [activeImage, setActiveImage] = useState(1);
 
   const ref = useRef(null);
 
   useEffect(() => {
-
     // This does not seem to work without a settimeout
     setTimeout(() => {
       let sections = gsap.utils.toArray(".gallery-item-wrapper");
@@ -97,38 +101,35 @@ const Gallery = () => {
       });
 
       ScrollTrigger.refresh();
-    })
-
-  }, [])
+    });
+  }, []);
 
   const handleUpdateActiveImage = (index) => {
     setActiveImage(index + 1);
   };
 
   return (
-    <div ref={ref}>
-    <section className="section-wrapper gallery-wrap" data-scroll-section>
-      <div className="gallery">
+    <div data-scroll-section>
+      <section className="section-wrapper gallery-wrap" ref={ref}>
+        <div className="gallery">
+          <div className="gallery-counter">
+            <span>{activeImage}</span>
+            <span className="divider" />
+            <span>{images.length}</span>
+          </div>
 
-        <div className='gallery-counter'>
-          <span>{activeImage}</span>
-          <span className="divider" />
-          <span>{images.length}</span>
+          {images.map((image, index) => (
+            <GalleryItem
+              key={image.src}
+              index={index}
+              {...image}
+              updateActiveImage={handleUpdateActiveImage}
+            />
+          ))}
         </div>
-
-        {images.map( (image, index) => (
-          <GalleryItem
-            key={image.src}
-            index={index}
-            {...image}
-            updateActiveImage={handleUpdateActiveImage}
-          />
-        ))}
-
-      </div>
-    </section>
+      </section>
     </div>
   );
-}
+};
 
-export default Gallery
+export default Gallery;
